@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Formulário NectarCRM</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário Nectar - Redirecionamento</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh; /* ocupa toda a altura */
+      border: none;
+    }
+  </style>
 </head>
 <body>
-<script src="https://app.nectarcrm.com.br/crm/api/1/webform/view-embedded/tn44AZMdEb9EjoNlEeNE3DpUdqoyZbQuvI6LLk34" defer></script>
+
+  <!-- IFRAME DO FORMULÁRIO -->
+  <iframe 
+    id="nectarForm"
+    src="https://app.nectarcrm.com.br/crm/api/1/webform/view/tn44AZMdEb9EjoNlEeNE3DpUdqoyZbQuvI6LLk34"
+  ></iframe>
+
+  <script>
+    // ESCUTA MENSAGENS do iframe (postMessage)
+    window.addEventListener("message", function(event) {
+
+      // 🔒 Segurança — allow apenas o domínio do Nectar
+      if (event.origin !== "https://app.nectarcrm.com.br") return;
+
+      // Quando receber mensagem de "form enviado"
+      if (event.data === "nectar:webform:success") {
+        // 🔁 Redireciona para o WhatsApp
+        window.location.href = "https://wa.me/5562994066070?text=Olá! Quero%20contratar%20um%20plano%20de%20internet.";
+      }
+
+    });
+  </script>
+
 </body>
 </html>
