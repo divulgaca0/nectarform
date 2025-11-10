@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulário Opyt</title>
-  <style>
-    body { margin: 0; padding: 0; font-family: Arial; }
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-  </style>
+<meta charset="UTF-8" />
+<title>Form Nectar + Redirect</title>
 </head>
 <body>
 
-  <div class="container">
-    <h2>Fale com a Opyt</h2>
-    <p>Preencha para falar com um especialista agora mesmo.</p>
+<!-- Formulário do Nectar -->
+<div id="nectar-form"></div>
 
-    <!-- FORMULÁRIO DO NECTAR (CORRETO) -->
-    <script 
-      src="https://app.nectarcrm.com.br/crm/api/1/webform/view-embedded/tn44AZMdEb9EjoNlEeNE3DpUdqoyZbQuvI6LLk34" 
-      defer>
-    </script>
-  </div>
+<script 
+  src="https://app.nectarcrm.com.br/crm/api/1/webform/view-embedded/tn44AZMdEb9EjoNlEeNE3DpUdqoyZbQuvI6LLk34" 
+  data-nectar-webform-destination-elem=""
+  defer>
+</script>
+
+<script>
+// Tentativa de detectar o envio a cada 500ms
+const watchSubmit = setInterval(() => {
+    const successMsg = document.querySelector(".web-form-success-message");
+    
+    if (successMsg) {
+        clearInterval(watchSubmit);
+
+        // REDIRECIONAMENTO PERSONALIZADO
+        window.location.href = "https://wa.me/5562994066070?text=Quero%20contratar%20o%20plano%20700%20Mega!";
+    }
+}, 500);
+</script>
 
 </body>
 </html>
